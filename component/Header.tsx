@@ -1,40 +1,66 @@
-import React from 'react'
-import { View, Text, StyleSheet,Image } from 'react-native'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
-
+import AntDesign from '@expo/vector-icons/AntDesign';
 const Header = () => {
   return (
-    <View style={styles.container}>
-        <View>
-            <Image 
-                source={require('T:\BookStore\BookStore\img\images.png')}
+    <View style={styles.headerContainer}>
+      <View style={styles.logoBox}>
+        <Image 
+            source={require('../img/logo.png')} 
+            style={styles.logoImage}
+            resizeMode="cover" 
             />
-        </View>
-        <View style={styles.left}>
-            
-            <FontAwesome name="search" size={24} color="black" />
-            <input style={{border : '3px solid gray', height: '20px'}} type="text" name="" id="" />
+      </View>
+
+      {/* Khối bên phải: Chứa 2 icon Tìm kiếm và Giỏ hàng */}
+      <View style={styles.rightActions}>
+        <TouchableOpacity style={styles.iconPlaceholder}>
+
+          <AntDesign name="search" size={24} color="black" />
+          
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconPlaceholder}>
+         
             <Entypo name="shopping-cart" size={24} color="black" />
-        </View>
+          
+        </TouchableOpacity>
+      </View>
     </View>
-  )
-}
+  );
+};
 
-const styles =StyleSheet.create({
-    container:{
-        width: 390,
-        // backgroundColor: "blue",
-        flexDirection : 'row',
-        justifyContent: 'space-between',
-        height: 56,
-        padding: 10
-    },
-    left:{
-        flexDirection : 'row',
-        gap: 20,
-    }
-})
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    width: '100%',
+    height: 56, // Chiều cao cố định theo yêu cầu
+    backgroundColor: 'navy', // Màu nền navy/indigo
+  },
+  logoBox: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
 
+  rightActions: {
+    flexDirection: 'row',
+    gap: 16, // Tạo khoảng cách giữa 2 icon bên phải (có thể dùng marginLeft nếu RN version cũ)
+  },
+  iconPlaceholder: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  logoImage: {
+  width: 100, 
+  height: 56, 
+  },
 
-export default Header
+});
+
+export default Header;
